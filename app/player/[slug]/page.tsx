@@ -76,15 +76,30 @@ export default async function PlayerPage({ params }: { params: Promise<{ slug: s
             </p>
           </div>
 
-          {/* Indicador ranking */}
-          <div className="shrink-0 rounded-2xl border border-white/10 bg-black/30 px-6 py-4 text-center backdrop-blur">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-              Ranking semanal
-            </span>
-            <span className="block font-display text-6xl leading-none text-primary text-glow-lime">
-              #{player.weeklyRank}
-            </span>
-            <TrendBadge player={player} showLabel className="justify-center" />
+          <div className="flex shrink-0 items-end gap-4">
+            {/* Imagen del jugador */}
+            <div
+              className="relative h-40 w-32 overflow-hidden rounded-2xl border border-white/15 bg-black/30 sm:h-52 sm:w-44"
+              style={{ boxShadow: `0 20px 45px -20px ${c1}` }}
+            >
+              <img
+                src={`/players/${player.slug}.png`}
+                alt={`Ilustración de ${player.name} con la camiseta de ${player.club}`}
+                className="h-full w-full object-cover object-top"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </div>
+
+            {/* Indicador ranking */}
+            <div className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-center backdrop-blur">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                Ranking semanal
+              </span>
+              <span className="block font-display text-5xl leading-none text-primary text-glow-lime sm:text-6xl">
+                #{player.weeklyRank}
+              </span>
+              <TrendBadge player={player} showLabel className="justify-center" />
+            </div>
           </div>
         </div>
       </header>
