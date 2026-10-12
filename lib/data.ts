@@ -1,8 +1,10 @@
-import { players } from "./players"
+import { players as mockPlayers } from "./players"
 import { leagues } from "./leagues"
+import { mergeWithSnapshot, rankingSnapshot } from "./snapshot"
 import type { Player, League, Trend } from "./types"
 
-export { players, leagues }
+export const players: Player[] = mergeWithSnapshot(mockPlayers)
+export { leagues, rankingSnapshot }
 export * from "./types"
 
 /** Puntos de ranking derivados de las estadísticas (mock). */

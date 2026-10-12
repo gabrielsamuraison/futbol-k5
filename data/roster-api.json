@@ -1,0 +1,42 @@
+{
+  "leagues": {
+    "premier-league": 39,
+    "la-liga": 140,
+    "bundesliga": 78,
+    "serie-a": 135,
+    "ligue-1": 61,
+    "saudi-pro-league": 307
+  },
+  "players": [
+    { "id": "bruno-fernandes", "leagueId": "premier-league", "search": "Fernandes", "apiPlayerId": 1485 },
+    { "id": "erling-haaland", "leagueId": "premier-league", "search": "Haaland", "apiPlayerId": 1100 },
+    { "id": "declan-rice", "leagueId": "premier-league", "search": "Rice" },
+    { "id": "bukayo-saka", "leagueId": "premier-league", "search": "Saka" },
+    { "id": "cole-palmer", "leagueId": "premier-league", "search": "Palmer" },
+    { "id": "lamine-yamal", "leagueId": "la-liga", "search": "Yamal" },
+    { "id": "kylian-mbappe", "leagueId": "la-liga", "search": "Mbappe", "apiPlayerId": 278 },
+    { "id": "pedri", "leagueId": "la-liga", "search": "Pedri" },
+    { "id": "raphinha", "leagueId": "la-liga", "search": "Raphinha", "apiPlayerId": 127 },
+    { "id": "jude-bellingham", "leagueId": "la-liga", "search": "Bellingham" },
+    { "id": "michael-olise", "leagueId": "bundesliga", "search": "Olise" },
+    { "id": "harry-kane", "leagueId": "bundesliga", "search": "Kane", "apiPlayerId": 184 },
+    { "id": "luis-diaz", "leagueId": "bundesliga", "search": "Diaz" },
+    { "id": "joshua-kimmich", "leagueId": "bundesliga", "search": "Kimmich" },
+    { "id": "alejandro-grimaldo", "leagueId": "bundesliga", "search": "Grimaldo" },
+    { "id": "lautaro-martinez", "leagueId": "serie-a", "search": "Lautaro", "apiPlayerId": 648 },
+    { "id": "federico-dimarco", "leagueId": "serie-a", "search": "Dimarco" },
+    { "id": "scott-mctominay", "leagueId": "serie-a", "search": "McTominay" },
+    { "id": "nicolo-barella", "leagueId": "serie-a", "search": "Barella" },
+    { "id": "christian-pulisic", "leagueId": "serie-a", "search": "Pulisic", "apiPlayerId": 510 },
+    { "id": "vitinha", "leagueId": "ligue-1", "search": "Vitinha" },
+    { "id": "ousmane-dembele", "leagueId": "ligue-1", "search": "Dembele", "apiPlayerId": 645 },
+    { "id": "nuno-mendes", "leagueId": "ligue-1", "search": "Mendes" },
+    { "id": "desire-doue", "leagueId": "ligue-1", "search": "Doue" },
+    { "id": "khvicha-kvaratskhelia", "leagueId": "ligue-1", "search": "Kvaratskhelia" },
+    { "id": "cristiano-ronaldo", "leagueId": "saudi-pro-league", "search": "Ronaldo", "apiPlayerId": 874 },
+    { "id": "joao-felix", "leagueId": "saudi-pro-league", "search": "Felix", "apiPlayerId": 757 },
+    { "id": "karim-benzema", "leagueId": "saudi-pro-league", "search": "Benzema" },
+    { "id": "riyad-mahrez", "leagueId": "saudi-pro-league", "search": "Mahrez" },
+    { "id": "ivan-toney", "leagueId": "saudi-pro-league", "search": "Toney" }
+  ]
+}
