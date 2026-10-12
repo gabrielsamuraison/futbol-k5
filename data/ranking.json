@@ -1,8 +1,8 @@
 {
-  "source": "mock",
+  "source": "api-football",
   "season": 2026,
   "weekNumber": 8,
-  "weekLabel": "Jornada 8",
-  "updatedAt": null,
+  "weekLabel": "Jornada 8 · 12 oct",
+  "updatedAt": "2026-10-12T00:52:22.210Z",
   "players": []
 }
