@@ -25,7 +25,9 @@ export default function RankingPage() {
         <h1 className="font-display text-5xl leading-none tracking-wide sm:text-6xl">Ranking 🔥</h1>
         <p className="mt-2 text-muted-foreground">
           Los 30 cracks mezclados en un solo ranking. ¿Quién manda?
-          {live && updated ? ` Actualizado ${updated}.` : " Datos de ejemplo hasta el primer sync con la API."}
+          {live && updated
+            ? ` Temporada ${rankingSnapshot.season} (plan free de la API). Actualizado ${updated}.`
+            : " Datos de ejemplo hasta el primer sync con la API."}
         </p>
       </header>
 

@@ -29,8 +29,8 @@ const KEY = process.env.API_FOOTBALL_KEY
 
 function currentSeason() {
   if (process.env.API_FOOTBALL_SEASON) return Number(process.env.API_FOOTBALL_SEASON)
-  const now = new Date()
-  return now.getMonth() >= 6 ? now.getFullYear() : now.getFullYear() - 1
+  // Plan free de API-Football: temporadas 2022–2024. 2025/26 pide plan pago.
+  return 2024
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -59,6 +59,10 @@ async function api(path) {
   }
   if (!res.ok) {
     throw new Error(`${path} → HTTP ${res.status}`)
+  }
+  const planErr = body?.errors?.plan
+  if (planErr) {
+    throw new Error(`${path} → ${planErr}`)
   }
   return body
 }
@@ -144,9 +148,12 @@ async function main() {
         continue
       }
 
-      const weekGoals = hadLiveSnapshot && prev
+      // Con temporada cerrada del plan free, el delta semanal es 0.
+      // Mostramos goles de esa temporada para que el ranking no quede vacío.
+      const delta = hadLiveSnapshot && prev
         ? Math.max(0, stats.seasonGoals - (prev.seasonGoals ?? 0))
-        : 0
+        : stats.seasonGoals
+      const weekGoals = delta > 0 ? delta : stats.seasonGoals
 
       const form = [...(prev?.form ?? []), weekGoals].slice(-5)
 
@@ -201,6 +208,10 @@ async function main() {
   }
 
   saveJson("data/api-ids.json", cachedIds)
+  if (ranked.length === 0) {
+    console.error("Snapshot vacío: no se publica ranking.json")
+    process.exit(1)
+  }
   saveJson("data/ranking.json", snapshot)
   console.log(`Snapshot ${snapshot.weekLabel} — ${ranked.length} jugadores`)
 }

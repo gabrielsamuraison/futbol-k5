@@ -19,6 +19,7 @@ jobs:
       - name: Sync ranking from API-Football
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          API_FOOTBALL_SEASON: "2024"
         run: node scripts/sync-ranking.mjs
       - name: Commit snapshot
         run: |
