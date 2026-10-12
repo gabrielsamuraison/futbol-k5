@@ -1,350 +1,187 @@
 {
-  "source": "api-football",
-  "season": 2024,
+  "source": "wikipedia",
+  "season": 2026,
   "weekNumber": 8,
   "weekLabel": "Jornada 8 · 11 oct",
-  "updatedAt": "2026-10-12T01:00:30.333Z",
+  "updatedAt": "2026-10-12T01:27:10.077Z",
   "players": [
     {
-      "id": "kylian-mbappe",
-      "apiPlayerId": 278,
-      "club": "Real Madrid",
-      "weekGoals": 31,
-      "seasonGoals": 31,
-      "assists": 3,
-      "matches": 34,
+      "id": "raphinha",
+      "club": "Barcelona",
+      "weekGoals": 12,
+      "seasonGoals": 12,
+      "assists": 0,
+      "matches": 7,
       "weeklyRank": 1,
       "prevRank": 1,
       "rarity": "potw",
       "form": [
-        31
-      ]
-    },
-    {
-      "id": "harry-kane",
-      "apiPlayerId": 184,
-      "club": "Bayern München",
-      "weekGoals": 26,
-      "seasonGoals": 26,
-      "assists": 8,
-      "matches": 31,
-      "weeklyRank": 2,
-      "prevRank": 2,
-      "rarity": "onfire",
-      "form": [
-        26
-      ]
-    },
-    {
-      "id": "cristiano-ronaldo",
-      "apiPlayerId": 874,
-      "club": "Al-Nassr",
-      "weekGoals": 25,
-      "seasonGoals": 25,
-      "assists": 3,
-      "matches": 30,
-      "weeklyRank": 3,
-      "prevRank": 3,
-      "rarity": "onfire",
-      "form": [
-        25
+        12
       ]
     },
     {
       "id": "ivan-toney",
-      "apiPlayerId": 19974,
-      "club": "Al-Ahli Jeddah",
-      "weekGoals": 23,
-      "seasonGoals": 23,
-      "assists": 4,
-      "matches": 30,
-      "weeklyRank": 4,
-      "prevRank": 4,
+      "club": "Al-Ahli",
+      "weekGoals": 10,
+      "seasonGoals": 10,
+      "assists": 0,
+      "matches": 7,
+      "weeklyRank": 2,
+      "prevRank": 2,
       "rarity": "onfire",
       "form": [
-        23
+        10
       ]
     },
     {
-      "id": "karim-benzema",
-      "apiPlayerId": 759,
-      "club": "Al-Ittihad FC",
-      "weekGoals": 21,
-      "seasonGoals": 21,
-      "assists": 9,
-      "matches": 29,
-      "weeklyRank": 5,
-      "prevRank": 5,
-      "rarity": "onfire",
-      "form": [
-        21
-      ]
-    },
-    {
-      "id": "erling-haaland",
-      "apiPlayerId": 1100,
-      "club": "Manchester City",
-      "weekGoals": 22,
-      "seasonGoals": 22,
-      "assists": 3,
-      "matches": 32,
-      "weeklyRank": 6,
-      "prevRank": 6,
-      "rarity": "onfire",
-      "form": [
-        22
-      ]
-    },
-    {
-      "id": "michael-olise",
-      "apiPlayerId": 19617,
-      "club": "Bayern München",
-      "weekGoals": 12,
-      "seasonGoals": 12,
-      "assists": 15,
-      "matches": 34,
-      "weeklyRank": 7,
-      "prevRank": 7,
-      "rarity": "onfire",
-      "form": [
-        12
-      ]
-    },
-    {
-      "id": "scott-mctominay",
-      "apiPlayerId": 903,
-      "club": "Napoli",
-      "weekGoals": 12,
-      "seasonGoals": 12,
-      "assists": 4,
-      "matches": 34,
-      "weeklyRank": 8,
-      "prevRank": 8,
-      "rarity": "onfire",
-      "form": [
-        12
-      ]
-    },
-    {
-      "id": "lamine-yamal",
-      "apiPlayerId": 386828,
-      "club": "Barcelona",
-      "weekGoals": 9,
-      "seasonGoals": 9,
-      "assists": 13,
-      "matches": 34,
-      "weeklyRank": 9,
-      "prevRank": 9,
-      "rarity": "onfire",
-      "form": [
-        9
-      ]
-    },
-    {
-      "id": "jude-bellingham",
-      "apiPlayerId": 129718,
+      "id": "kylian-mbappe",
       "club": "Real Madrid",
-      "weekGoals": 9,
-      "seasonGoals": 9,
-      "assists": 8,
-      "matches": 31,
-      "weeklyRank": 10,
-      "prevRank": 10,
-      "rarity": "onfire",
-      "form": [
-        9
-      ]
-    },
-    {
-      "id": "bruno-fernandes",
-      "apiPlayerId": 1485,
-      "club": "Manchester United",
-      "weekGoals": 8,
-      "seasonGoals": 8,
-      "assists": 10,
-      "matches": 36,
-      "weeklyRank": 11,
-      "prevRank": 11,
-      "rarity": "onfire",
-      "form": [
-        8
-      ]
-    },
-    {
-      "id": "riyad-mahrez",
-      "apiPlayerId": 635,
-      "club": "Al-Ahli Jeddah",
-      "weekGoals": 8,
-      "seasonGoals": 8,
-      "assists": 10,
-      "matches": 31,
-      "weeklyRank": 12,
-      "prevRank": 12,
-      "rarity": "onfire",
-      "form": [
-        8
-      ]
-    },
-    {
-      "id": "bukayo-saka",
-      "apiPlayerId": 1460,
-      "club": "Arsenal",
-      "weekGoals": 6,
-      "seasonGoals": 6,
-      "assists": 10,
-      "matches": 25,
-      "weeklyRank": 13,
-      "prevRank": 13,
-      "rarity": "onfire",
-      "form": [
-        6
-      ]
-    },
-    {
-      "id": "christian-pulisic",
-      "apiPlayerId": 510,
-      "club": "Bayern München",
       "weekGoals": 7,
       "seasonGoals": 7,
-      "assists": 5,
-      "matches": 27,
-      "weeklyRank": 14,
-      "prevRank": 14,
+      "assists": 0,
+      "matches": 8,
+      "weeklyRank": 3,
+      "prevRank": 3,
       "rarity": "onfire",
       "form": [
         7
       ]
     },
     {
-      "id": "declan-rice",
-      "apiPlayerId": 2937,
-      "club": "Arsenal",
-      "weekGoals": 4,
-      "seasonGoals": 4,
-      "assists": 7,
-      "matches": 35,
-      "weeklyRank": 15,
-      "prevRank": 15,
-      "rarity": "onfire",
-      "form": [
-        4
-      ]
-    },
-    {
-      "id": "federico-dimarco",
-      "apiPlayerId": 31010,
-      "club": "Inter",
-      "weekGoals": 4,
-      "seasonGoals": 4,
-      "assists": 7,
-      "matches": 34,
-      "weeklyRank": 16,
-      "prevRank": 16,
-      "rarity": "onfire",
-      "form": [
-        4
-      ]
-    },
-    {
-      "id": "pedri",
-      "apiPlayerId": 133609,
+      "id": "lamine-yamal",
       "club": "Barcelona",
-      "weekGoals": 4,
-      "seasonGoals": 4,
-      "assists": 5,
-      "matches": 36,
-      "weeklyRank": 17,
-      "prevRank": 17,
+      "weekGoals": 7,
+      "seasonGoals": 7,
+      "assists": 0,
+      "matches": 8,
+      "weeklyRank": 4,
+      "prevRank": 4,
       "rarity": "onfire",
       "form": [
-        4
+        7
       ]
     },
     {
-      "id": "vitinha",
-      "apiPlayerId": 128384,
-      "club": "Paris Saint Germain",
+      "id": "erling-haaland",
+      "club": "Manchester City",
       "weekGoals": 5,
       "seasonGoals": 5,
-      "assists": 1,
-      "matches": 29,
-      "weeklyRank": 18,
-      "prevRank": 18,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 5,
+      "prevRank": 5,
       "rarity": "onfire",
       "form": [
         5
       ]
     },
     {
-      "id": "joshua-kimmich",
-      "apiPlayerId": 502,
-      "club": "Bayern München",
-      "weekGoals": 3,
-      "seasonGoals": 3,
-      "assists": 7,
-      "matches": 33,
-      "weeklyRank": 19,
-      "prevRank": 19,
-      "rarity": "onfire",
-      "form": [
-        3
-      ]
-    },
-    {
-      "id": "khvicha-kvaratskhelia",
-      "apiPlayerId": 483,
-      "club": "Paris Saint Germain",
+      "id": "cristiano-ronaldo",
+      "club": "Al-Nassr",
       "weekGoals": 4,
       "seasonGoals": 4,
-      "assists": 3,
-      "matches": 16,
-      "weeklyRank": 20,
-      "prevRank": 20,
+      "assists": 0,
+      "matches": 7,
+      "weeklyRank": 6,
+      "prevRank": 6,
       "rarity": "onfire",
       "form": [
         4
       ]
     },
     {
-      "id": "nicolo-barella",
-      "apiPlayerId": 30558,
-      "club": "Inter",
+      "id": "lautaro-martinez",
+      "club": "Inter Milan",
+      "weekGoals": 4,
+      "seasonGoals": 4,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 7,
+      "prevRank": 7,
+      "rarity": "onfire",
+      "form": [
+        4
+      ]
+    },
+    {
+      "id": "michael-olise",
+      "club": "Bayern Munich",
+      "weekGoals": 4,
+      "seasonGoals": 4,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 8,
+      "prevRank": 8,
+      "rarity": "onfire",
+      "form": [
+        4
+      ]
+    },
+    {
+      "id": "bruno-fernandes",
+      "club": "Manchester United",
       "weekGoals": 3,
       "seasonGoals": 3,
-      "assists": 6,
-      "matches": 34,
-      "weeklyRank": 21,
-      "prevRank": 21,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 9,
+      "prevRank": 9,
       "rarity": "onfire",
       "form": [
         3
       ]
     },
     {
-      "id": "alejandro-grimaldo",
-      "apiPlayerId": 563,
-      "club": "Bayer Leverkusen",
-      "weekGoals": 2,
-      "seasonGoals": 2,
-      "assists": 7,
-      "matches": 32,
-      "weeklyRank": 22,
-      "prevRank": 22,
-      "rarity": "hot",
+      "id": "bukayo-saka",
+      "club": "Arsenal",
+      "weekGoals": 3,
+      "seasonGoals": 3,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 10,
+      "prevRank": 10,
+      "rarity": "onfire",
       "form": [
-        2
+        3
       ]
     },
     {
-      "id": "nuno-mendes",
-      "apiPlayerId": 263482,
-      "club": "Paris Saint Germain",
+      "id": "harry-kane",
+      "club": "Bayern Munich",
+      "weekGoals": 3,
+      "seasonGoals": 3,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 11,
+      "prevRank": 11,
+      "rarity": "onfire",
+      "form": [
+        3
+      ]
+    },
+    {
+      "id": "jude-bellingham",
+      "club": "Real Madrid",
+      "weekGoals": 3,
+      "seasonGoals": 3,
+      "assists": 0,
+      "matches": 8,
+      "weeklyRank": 12,
+      "prevRank": 12,
+      "rarity": "onfire",
+      "form": [
+        3
+      ]
+    },
+    {
+      "id": "cole-palmer",
+      "club": "Chelsea",
       "weekGoals": 2,
       "seasonGoals": 2,
-      "assists": 3,
-      "matches": 24,
-      "weeklyRank": 23,
-      "prevRank": 23,
+      "assists": 0,
+      "matches": 6,
+      "weeklyRank": 13,
+      "prevRank": 13,
       "rarity": "hot",
       "form": [
         2
@@ -352,27 +189,165 @@
     },
     {
       "id": "joao-felix",
-      "apiPlayerId": 757,
-      "club": "Real Madrid",
+      "club": "Al-Nassr",
+      "weekGoals": 2,
+      "seasonGoals": 2,
+      "assists": 0,
+      "matches": 6,
+      "weeklyRank": 14,
+      "prevRank": 14,
+      "rarity": "hot",
+      "form": [
+        2
+      ]
+    },
+    {
+      "id": "christian-pulisic",
+      "club": "AC Milan",
       "weekGoals": 1,
       "seasonGoals": 1,
-      "assists": 5,
-      "matches": 32,
-      "weeklyRank": 24,
-      "prevRank": 24,
+      "assists": 0,
+      "matches": 2,
+      "weeklyRank": 15,
+      "prevRank": 15,
       "rarity": "normal",
       "form": [
         1
       ]
     },
     {
-      "id": "ousmane-dembele",
-      "apiPlayerId": 645,
+      "id": "karim-benzema",
+      "club": "Al-Hilal",
+      "weekGoals": 1,
+      "seasonGoals": 1,
+      "assists": 0,
+      "matches": 2,
+      "weeklyRank": 16,
+      "prevRank": 16,
+      "rarity": "normal",
+      "form": [
+        1
+      ]
+    },
+    {
+      "id": "khvicha-kvaratskhelia",
+      "club": "Paris Saint-Germain",
+      "weekGoals": 1,
+      "seasonGoals": 1,
+      "assists": 0,
+      "matches": 6,
+      "weeklyRank": 17,
+      "prevRank": 17,
+      "rarity": "normal",
+      "form": [
+        1
+      ]
+    },
+    {
+      "id": "luis-diaz",
+      "club": "Bayern Munich",
+      "weekGoals": 1,
+      "seasonGoals": 1,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 18,
+      "prevRank": 18,
+      "rarity": "normal",
+      "form": [
+        1
+      ]
+    },
+    {
+      "id": "nicolo-barella",
+      "club": "Inter Milan",
+      "weekGoals": 1,
+      "seasonGoals": 1,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 19,
+      "prevRank": 19,
+      "rarity": "normal",
+      "form": [
+        1
+      ]
+    },
+    {
+      "id": "pedri",
+      "club": "Barcelona",
+      "weekGoals": 1,
+      "seasonGoals": 1,
+      "assists": 0,
+      "matches": 8,
+      "weeklyRank": 20,
+      "prevRank": 20,
+      "rarity": "normal",
+      "form": [
+        1
+      ]
+    },
+    {
+      "id": "vitinha",
+      "club": "Paris Saint-Germain",
+      "weekGoals": 1,
+      "seasonGoals": 1,
+      "assists": 0,
+      "matches": 6,
+      "weeklyRank": 21,
+      "prevRank": 21,
+      "rarity": "normal",
+      "form": [
+        1
+      ]
+    },
+    {
+      "id": "alejandro-grimaldo",
+      "club": "Bayer Leverkusen",
+      "weekGoals": 0,
+      "seasonGoals": 0,
+      "assists": 0,
+      "matches": 0,
+      "weeklyRank": 22,
+      "prevRank": 22,
+      "rarity": "normal",
+      "form": [
+        0
+      ]
+    },
+    {
+      "id": "declan-rice",
       "club": "Arsenal",
       "weekGoals": 0,
       "seasonGoals": 0,
-      "assists": 2,
-      "matches": 17,
+      "assists": 0,
+      "matches": 5,
+      "weeklyRank": 23,
+      "prevRank": 23,
+      "rarity": "normal",
+      "form": [
+        0
+      ]
+    },
+    {
+      "id": "desire-doue",
+      "club": "Paris Saint-Germain",
+      "weekGoals": 0,
+      "seasonGoals": 0,
+      "assists": 0,
+      "matches": 6,
+      "weeklyRank": 24,
+      "prevRank": 24,
+      "rarity": "normal",
+      "form": [
+        0
+      ]
+    },
+    {
+      "id": "federico-dimarco",
+      "club": "Inter Milan",
+      "weekGoals": 0,
+      "seasonGoals": 0,
+      "assists": 0,
+      "matches": 6,
       "weeklyRank": 25,
       "prevRank": 25,
       "rarity": "normal",
@@ -381,13 +356,12 @@
       ]
     },
     {
-      "id": "cole-palmer",
-      "apiPlayerId": 82097,
-      "club": "Ipswich",
+      "id": "joshua-kimmich",
+      "club": "Bayern Munich",
       "weekGoals": 0,
       "seasonGoals": 0,
       "assists": 0,
-      "matches": 13,
+      "matches": 5,
       "weeklyRank": 26,
       "prevRank": 26,
       "rarity": "normal",
@@ -396,13 +370,12 @@
       ]
     },
     {
-      "id": "desire-doue",
-      "apiPlayerId": 145060,
-      "club": "Marseille",
+      "id": "nuno-mendes",
+      "club": "Paris Saint-Germain",
       "weekGoals": 0,
       "seasonGoals": 0,
       "assists": 0,
-      "matches": 0,
+      "matches": 2,
       "weeklyRank": 27,
       "prevRank": 27,
       "rarity": "normal",
@@ -411,13 +384,12 @@
       ]
     },
     {
-      "id": "lautaro-martinez",
-      "apiPlayerId": 648,
-      "club": "Köln II",
+      "id": "ousmane-dembele",
+      "club": "Paris Saint-Germain",
       "weekGoals": 0,
       "seasonGoals": 0,
       "assists": 0,
-      "matches": 1,
+      "matches": 4,
       "weeklyRank": 28,
       "prevRank": 28,
       "rarity": "normal",
@@ -426,15 +398,28 @@
       ]
     },
     {
-      "id": "raphinha",
-      "apiPlayerId": 127,
-      "club": "Barcelona",
+      "id": "riyad-mahrez",
+      "club": "Al-Ahli",
       "weekGoals": 0,
       "seasonGoals": 0,
       "assists": 0,
-      "matches": 11,
+      "matches": 0,
       "weeklyRank": 29,
       "prevRank": 29,
+      "rarity": "normal",
+      "form": [
+        0
+      ]
+    },
+    {
+      "id": "scott-mctominay",
+      "club": "Napoli",
+      "weekGoals": 0,
+      "seasonGoals": 0,
+      "assists": 0,
+      "matches": 3,
+      "weeklyRank": 30,
+      "prevRank": 30,
       "rarity": "normal",
       "form": [
         0

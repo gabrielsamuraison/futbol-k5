@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 export default function RankingPage() {
-  const live = rankingSnapshot.source === "api-football"
+  const live = rankingSnapshot.source === "wikipedia" || rankingSnapshot.source === "api-football"
   const updated = rankingSnapshot.updatedAt
     ? new Date(rankingSnapshot.updatedAt).toLocaleDateString("es-AR", {
         weekday: "short",
@@ -26,8 +26,8 @@ export default function RankingPage() {
         <p className="mt-2 text-muted-foreground">
           Los 30 cracks mezclados en un solo ranking. ¿Quién manda?
           {live && updated
-            ? ` Temporada ${rankingSnapshot.season} (plan free de la API). Actualizado ${updated}.`
-            : " Datos de ejemplo hasta el primer sync con la API."}
+            ? ` Temporada ${rankingSnapshot.season}/${String(rankingSnapshot.season + 1).slice(-2)} (Wikipedia). Actualizado ${updated}.`
+            : " Datos de ejemplo hasta el primer sync."}
         </p>
       </header>
 
