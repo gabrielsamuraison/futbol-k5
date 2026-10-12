@@ -8,6 +8,20 @@ This repository is linked to a [v0](https://v0.app) project. You can continue de
 
 [Continue working on v0 →](https://v0.app/chat/projects/prj_6665bgdQ66voaFignR9Ta9kjfiYI)
 
+## Ranking semanal (API-Football, plan free)
+
+El ranking **no llama a la API en cada visita**. Un job de GitHub Actions corre **los lunes a las 06:00 UTC**, pide las stats de los 30 jugadores (~30 requests, cabe en las 100/día del plan free) y guarda `data/ranking.json`. Vercel redespliega y la página cambia.
+
+1. Creá una key en [dashboard.api-football.com](https://dashboard.api-football.com/).
+2. En el repo de GitHub: **Settings → Secrets and variables → Actions → New repository secret**
+   - Nombre: `API_FOOTBALL_KEY`
+   - Valor: tu key
+3. **Actions → Weekly ranking → Run workflow** para la primera carga (después corre solo cada lunes).
+
+En local: copiá `.env.example` a `.env`, poné la key y corré `pnpm sync:ranking`.
+
+Los goles de la semana son la **diferencia** de goles de liga vs el snapshot anterior. La primera corrida ordena por temporada (delta = 0); desde la segunda ya hay subidas/bajadas.
+
 ## Getting Started
 
 First, run the development server:
