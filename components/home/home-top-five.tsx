@@ -6,6 +6,14 @@ import { getLeague } from "@/lib/data"
 import { TrendBadge } from "@/components/trend-badge"
 import { cn } from "@/lib/utils"
 
+const realPhotos = new Set([
+  "cristiano-ronaldo",
+  "erling-haaland",
+  "kylian-mbappe",
+  "lamine-yamal",
+  "harry-kane",
+])
+
 const rankColor: Record<number, string> = {
   1: "text-primary text-glow-lime",
   2: "text-slate-300",
@@ -33,6 +41,28 @@ export function HomeTopFive({ players }: { players: Player[] }) {
           <TopFiveCard key={player.id} player={player} rank={i + 1} priority={i === 0} />
         ))}
       </div>
+
+      <p className="mt-3 text-[10px] text-muted-foreground">
+        Fotos: Bryan Berlin vía{" "}
+        <a
+          href="https://commons.wikimedia.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-foreground"
+        >
+          Wikimedia Commons
+        </a>
+        ,{" "}
+        <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-foreground"
+        >
+          CC BY-SA 4.0
+        </a>
+        .
+      </p>
     </section>
   )
 }
@@ -55,12 +85,12 @@ function TopFiveCard({ player, rank, priority }: { player: Player; rank: number;
       {/* Imagen del jugador */}
       <div className="relative aspect-[3/4] w-full overflow-hidden">
         <Image
-          src={`/players/${player.slug}.png`}
+          src={realPhotos.has(player.slug) ? `/players/real/${player.slug}.jpg` : `/players/${player.slug}.png`}
           alt={player.name}
           fill
           priority={priority}
           sizes="(max-width: 640px) 50vw, 20vw"
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          className="object-cover object-[50%_15%] transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
 
