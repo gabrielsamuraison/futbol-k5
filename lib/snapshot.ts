@@ -16,7 +16,7 @@ export interface SnapshotPlayer {
 }
 
 export interface RankingSnapshot {
-  source: "mock" | "api-football"
+  source: "mock" | "api-football" | "wikipedia"
   season: number
   weekNumber: number
   weekLabel: string
@@ -27,7 +27,10 @@ export interface RankingSnapshot {
 export const rankingSnapshot = snapshot as RankingSnapshot
 
 export function mergeWithSnapshot(base: Player[]): Player[] {
-  if (rankingSnapshot.source !== "api-football" || rankingSnapshot.players.length === 0) {
+  if (
+    (rankingSnapshot.source !== "api-football" && rankingSnapshot.source !== "wikipedia") ||
+    rankingSnapshot.players.length === 0
+  ) {
     return base
   }
 

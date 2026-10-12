@@ -3,35 +3,9 @@ import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..")
-
-function loadDotenv() {
-  try {
-    const text = readFileSync(join(root, ".env"), "utf8")
-    for (const line of text.split("\n")) {
-      const trimmed = line.trim()
-      if (!trimmed || trimmed.startsWith("#")) continue
-      const eq = trimmed.indexOf("=")
-      if (eq === -1) continue
-      const key = trimmed.slice(0, eq).trim()
-      const value = trimmed.slice(eq + 1).trim()
-      if (key && process.env[key] == null) process.env[key] = value
-    }
-  } catch {
-    // .env is optional when the key comes from GitHub Actions.
-  }
-}
-
-loadDotenv()
-
-const DELAY_MS = 7000
-const BASE = process.env.API_FOOTBALL_BASE_URL ?? "https://v3.football.api-sports.io"
-const KEY = process.env.API_FOOTBALL_KEY
-
-function currentSeason() {
-  if (process.env.API_FOOTBALL_SEASON) return Number(process.env.API_FOOTBALL_SEASON)
-  // Plan free de API-Football: temporadas 2022–2024. 2025/26 pide plan pago.
-  return 2024
-}
+const DELAY_MS = 800
+const UA = "TOP-XI/1.0 (https://github.com/gabrielsamuraison/futbol-k5; weekly ranking snapshot)"
+const WIKI = "https://en.wikipedia.org/w/api.php"
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -47,31 +21,6 @@ function saveJson(rel, data) {
   writeFileSync(join(root, rel), `${JSON.stringify(data, null, 2)}\n`)
 }
 
-async function api(path) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { "x-apisports-key": KEY },
-  })
-  const body = await res.json()
-  if (res.status === 429 || body?.errors?.rateLimit) {
-    console.warn("Rate limit, esperando 60s…")
-    await sleep(60_000)
-    return api(path)
-  }
-  if (!res.ok) {
-    throw new Error(`${path} → HTTP ${res.status}`)
-  }
-  const planErr = body?.errors?.plan
-  if (planErr) {
-    throw new Error(`${path} → ${planErr}`)
-  }
-  return body
-}
-
-function pickLeagueStats(entry, leagueApiId) {
-  const stats = entry?.statistics ?? []
-  return stats.find((s) => s.league?.id === leagueApiId) ?? stats[0] ?? null
-}
-
 function rarityFor(rank, weekGoals) {
   if (rank === 1) return "potw"
   if (weekGoals >= 3) return "onfire"
@@ -83,97 +32,170 @@ function getPoints(weekGoals, assists, seasonGoals) {
   return weekGoals * 12 + assists * 5 + seasonGoals * 3
 }
 
-async function resolveId(item, leagueApiId, season, cached) {
-  if (cached[item.id]) return cached[item.id]
-  if (item.apiPlayerId) return item.apiPlayerId
-
-  const q = encodeURIComponent(item.search)
-  const body = await api(`/players?search=${q}&league=${leagueApiId}&season=${season}`)
-  await sleep(DELAY_MS)
-  const rows = body.response ?? []
-  const id = rows.find((row) => {
-    const hay = `${row.player?.firstname ?? ""} ${row.player?.lastname ?? ""} ${row.player?.name ?? ""}`.toLowerCase()
-    return hay.includes(item.search.toLowerCase())
-  })?.player?.id ?? rows[0]?.player?.id
-
-  if (!id) console.warn(`Sin ID para ${item.id}`)
-  return id ?? null
+function decodeEntities(text) {
+  return text
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&#91;/g, "[")
+    .replace(/&#93;/g, "]")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
 }
 
-async function fetchStats(apiPlayerId, leagueApiId, season) {
-  const body = await api(`/players?id=${apiPlayerId}&season=${season}`)
-  const line = pickLeagueStats(body.response?.[0], leagueApiId)
-  if (!line) return null
-  return {
-    club: line.team?.name,
-    seasonGoals: Number(line.goals?.total ?? 0) || 0,
-    assists: Number(line.goals?.assists ?? 0) || 0,
-    matches: Number(line.games?.appearences ?? line.games?.appearances ?? 0) || 0,
+function cellText(inner) {
+  const plain = decodeEntities(inner.replace(/<[^>]+>/g, " "))
+  return plain.replace(/\[[^\]]*]/g, " ").replace(/\s+/g, " ").trim()
+}
+
+function rowCells(rowHtml) {
+  return [...rowHtml.matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((m) => cellText(m[1]))
+}
+
+function currentSeasonStart() {
+  const now = new Date()
+  return now.getMonth() >= 6 ? now.getFullYear() : now.getFullYear() - 1
+}
+
+function leagueMatches(division, names) {
+  const d = (division ?? "").toLowerCase()
+  return names.some((n) => d.includes(n.toLowerCase()))
+}
+
+function parseCareerTable(pageHtml, leagueNames, seasonStart) {
+  const block = pageHtml.match(/Appearances and goals by club[\s\S]{0,500}<tbody>([\s\S]*?)<\/tbody>/i)
+  if (!block) return null
+
+  const rows = [...block[1].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map((m) => m[1])
+  let club = null
+  let division = null
+  const candidates = []
+
+  for (const row of rows) {
+    const cells = rowCells(row)
+    if (!cells.length) continue
+    const joined = cells.join(" ")
+    if (/\bTotal\b/i.test(joined)) continue
+
+    const seasonIdx = cells.findIndex((c) => /20\d{2}\s*[–-]\s*\d{2}/.test(c))
+    if (seasonIdx === -1) {
+      if (cells[0] && !/^(Club|Season|Division|Apps|Goals)$/i.test(cells[0])) club = cells[0]
+      continue
+    }
+
+    if (seasonIdx > 0 && cells[0] && !/20\d{2}/.test(cells[0])) club = cells[0]
+
+    const season = cells[seasonIdx]
+    const rest = cells.slice(seasonIdx + 1)
+    let numsStart = 0
+    if (rest[0] && !/^\d+$/.test(rest[0]) && rest[0] !== "—" && rest[0] !== "–") {
+      division = rest[0]
+      numsStart = 1
+    }
+
+    const nums = []
+    for (const x of rest.slice(numsStart)) {
+      if (x === "—" || x === "–" || x === "-" || x === "") continue
+      if (/^\d+$/.test(x)) nums.push(Number(x))
+    }
+    if (nums.length < 2) continue
+
+    const year = Number(season.match(/(20\d{2})/)[1])
+    candidates.push({
+      year,
+      season,
+      club,
+      division,
+      matches: nums[0],
+      seasonGoals: nums[1],
+    })
   }
+
+  if (!candidates.length) return null
+
+  const matched = candidates.filter((c) => leagueMatches(c.division, leagueNames))
+  const pool = matched.length ? matched : candidates
+  const thisSeason = pool.filter((c) => c.year === seasonStart)
+  if (thisSeason.length) {
+    thisSeason.sort((a, b) => b.seasonGoals - a.seasonGoals)
+    return thisSeason[0]
+  }
+
+  pool.sort((a, b) => b.year - a.year)
+  const latest = pool[0]
+  return {
+    ...latest,
+    year: seasonStart,
+    season: `${seasonStart}–${String(seasonStart + 1).slice(-2)}`,
+    matches: 0,
+    seasonGoals: 0,
+  }
+}
+
+async function fetchWikiHtml(title) {
+  const url = `${WIKI}?${new URLSearchParams({
+    action: "parse",
+    page: title,
+    prop: "text",
+    format: "json",
+    formatversion: "2",
+    redirects: "1",
+  })}`
+  const res = await fetch(url, { headers: { "User-Agent": UA, Accept: "application/json" } })
+  if (!res.ok) throw new Error(`Wikipedia HTTP ${res.status} (${title})`)
+  const body = await res.json()
+  if (body.error) throw new Error(`Wikipedia ${title}: ${body.error.info ?? body.error.code}`)
+  return body.parse?.text ?? ""
 }
 
 async function main() {
-  if (!KEY) {
-    console.error("Falta API_FOOTBALL_KEY")
-    process.exit(1)
-  }
-
-  const season = currentSeason()
   const roster = loadJson("data/roster-api.json", { leagues: {}, players: [] })
-  const cachedIds = loadJson("data/api-ids.json", {})
   const previous = loadJson("data/ranking.json", { players: [], weekNumber: 8, source: "mock" })
   const prevById = new Map((previous.players ?? []).map((p) => [p.id, p]))
-  const hadLiveSnapshot = previous.source === "api-football" && (previous.players?.length ?? 0) > 0
-
+  const hadLiveSnapshot = previous.source === "wikipedia" && (previous.players?.length ?? 0) > 0
   const collected = []
 
   for (const item of roster.players) {
-    const leagueApiId = roster.leagues[item.leagueId]
     const prev = prevById.get(item.id)
+    const leagueNames = roster.leagues[item.leagueId] ?? []
 
     try {
-      const apiPlayerId = await resolveId(item, leagueApiId, season, cachedIds)
-      if (apiPlayerId) cachedIds[item.id] = apiPlayerId
+      const html = await fetchWikiHtml(item.wikipedia)
+      const stats = parseCareerTable(html, leagueNames, currentSeasonStart())
+      await sleep(DELAY_MS)
 
-      if (!apiPlayerId) {
+      if (!stats) {
+        console.warn(`Sin tabla para ${item.id}`)
         if (prev) collected.push({ ...prev, id: item.id })
         continue
       }
 
-      const stats = await fetchStats(apiPlayerId, leagueApiId, season)
-      await sleep(DELAY_MS)
-
-      if (!stats) {
-        if (prev) collected.push({ ...prev, id: item.id, apiPlayerId })
-        continue
-      }
-
-      // Con temporada cerrada del plan free, el delta semanal es 0.
-      // Mostramos goles de esa temporada para que el ranking no quede vacío.
       const delta = hadLiveSnapshot && prev
         ? Math.max(0, stats.seasonGoals - (prev.seasonGoals ?? 0))
         : stats.seasonGoals
       const weekGoals = delta > 0 ? delta : stats.seasonGoals
-
-      const form = [...(prev?.form ?? []), weekGoals].slice(-5)
+      const form = hadLiveSnapshot ? [...(prev?.form ?? []), weekGoals].slice(-5) : [weekGoals]
 
       collected.push({
         id: item.id,
-        apiPlayerId,
-        club: stats.club,
+        club: stats.club ?? prev?.club,
         weekGoals,
         seasonGoals: stats.seasonGoals,
-        assists: stats.assists,
+        assists: 0,
         matches: stats.matches,
         weeklyRank: prev?.weeklyRank ?? 99,
         prevRank: prev?.weeklyRank ?? 99,
         rarity: prev?.rarity ?? "normal",
         form,
+        seasonLabel: stats.season,
       })
-      console.log(`OK ${item.id}: ${stats.seasonGoals} goles, ${stats.assists} asist.`)
+      console.log(
+        `OK ${item.id}: ${stats.season} ${stats.club} ${stats.matches} pj, ${stats.seasonGoals} goles`,
+      )
     } catch (err) {
       console.warn(`Error ${item.id}:`, err.message)
       if (prev) collected.push({ ...prev, id: item.id })
+      await sleep(DELAY_MS)
     }
   }
 
@@ -188,32 +210,36 @@ async function main() {
   const ranked = collected.map((player, i) => {
     const weeklyRank = i + 1
     const prevRank = hadLiveSnapshot ? (prevById.get(player.id)?.weeklyRank ?? weeklyRank) : weeklyRank
+    const { seasonLabel, ...rest } = player
     return {
-      ...player,
+      ...rest,
       weeklyRank,
       prevRank,
       rarity: rarityFor(weeklyRank, player.weekGoals),
     }
   })
 
+  if (ranked.length === 0) {
+    console.error("Snapshot vacío: no se publica ranking.json")
+    process.exit(1)
+  }
+
   const now = new Date().toISOString()
-  const weekNumber = hadLiveSnapshot ? (previous.weekNumber ?? 8) + 1 : Math.max(previous.weekNumber ?? 8, 1)
+  const seasonYear = Math.max(
+    ...collected.map((p) => Number(String(p.seasonLabel ?? "2026").match(/20\d{2}/)?.[0] ?? 2026)),
+  )
+  const weekNumber = hadLiveSnapshot ? (previous.weekNumber ?? 8) + 1 : 8
   const snapshot = {
-    source: "api-football",
-    season,
+    source: "wikipedia",
+    season: seasonYear,
     weekNumber,
     weekLabel: `Jornada ${weekNumber} · ${new Date(now).toLocaleDateString("es-AR", { day: "numeric", month: "short" })}`,
     updatedAt: now,
     players: ranked,
   }
 
-  saveJson("data/api-ids.json", cachedIds)
-  if (ranked.length === 0) {
-    console.error("Snapshot vacío: no se publica ranking.json")
-    process.exit(1)
-  }
   saveJson("data/ranking.json", snapshot)
-  console.log(`Snapshot ${snapshot.weekLabel} — ${ranked.length} jugadores`)
+  console.log(`Snapshot ${snapshot.weekLabel} — ${ranked.length} jugadores (Wikipedia ${seasonYear})`)
 }
 
 main().catch((err) => {
