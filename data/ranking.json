@@ -1,9 +1,9 @@
 {
   "source": "api-football",
   "season": 2024,
-  "weekNumber": 9,
-  "weekLabel": "Jornada 9 · 12 oct",
-  "updatedAt": "2026-10-12T06:22:56.511Z",
+  "weekNumber": 10,
+  "weekLabel": "Jornada 10 · 19 oct",
+  "updatedAt": "2026-10-19T06:35:54.561Z",
   "players": [
     {
       "id": "kylian-mbappe",
@@ -17,6 +17,7 @@
       "prevRank": 1,
       "rarity": "potw",
       "form": [
+        31,
         31,
         31
       ]
@@ -34,6 +35,7 @@
       "rarity": "onfire",
       "form": [
         26,
+        26,
         26
       ]
     },
@@ -49,6 +51,7 @@
       "prevRank": 3,
       "rarity": "onfire",
       "form": [
+        25,
         25,
         25
       ]
@@ -66,6 +69,7 @@
       "rarity": "onfire",
       "form": [
         23,
+        23,
         23
       ]
     },
@@ -81,6 +85,7 @@
       "prevRank": 5,
       "rarity": "onfire",
       "form": [
+        21,
         21,
         21
       ]
@@ -98,6 +103,7 @@
       "rarity": "onfire",
       "form": [
         22,
+        22,
         22
       ]
     },
@@ -113,6 +119,7 @@
       "prevRank": 7,
       "rarity": "onfire",
       "form": [
+        12,
         12,
         12
       ]
@@ -130,6 +137,7 @@
       "rarity": "onfire",
       "form": [
         12,
+        12,
         12
       ]
     },
@@ -145,6 +153,7 @@
       "prevRank": 9,
       "rarity": "onfire",
       "form": [
+        9,
         9,
         9
       ]
@@ -162,6 +171,7 @@
       "rarity": "onfire",
       "form": [
         9,
+        9,
         9
       ]
     },
@@ -177,6 +187,7 @@
       "prevRank": 11,
       "rarity": "onfire",
       "form": [
+        8,
         8,
         8
       ]
@@ -194,6 +205,7 @@
       "rarity": "onfire",
       "form": [
         8,
+        8,
         8
       ]
     },
@@ -209,6 +221,7 @@
       "prevRank": 13,
       "rarity": "onfire",
       "form": [
+        6,
         6,
         6
       ]
@@ -226,6 +239,7 @@
       "rarity": "onfire",
       "form": [
         7,
+        7,
         7
       ]
     },
@@ -241,6 +255,7 @@
       "prevRank": 15,
       "rarity": "onfire",
       "form": [
+        4,
         4,
         4
       ]
@@ -258,6 +273,7 @@
       "rarity": "onfire",
       "form": [
         4,
+        4,
         4
       ]
     },
@@ -273,6 +289,7 @@
       "prevRank": 17,
       "rarity": "onfire",
       "form": [
+        4,
         4,
         4
       ]
@@ -290,6 +307,7 @@
       "rarity": "onfire",
       "form": [
         5,
+        5,
         5
       ]
     },
@@ -305,6 +323,7 @@
       "prevRank": 19,
       "rarity": "onfire",
       "form": [
+        3,
         3,
         3
       ]
@@ -322,6 +341,7 @@
       "rarity": "onfire",
       "form": [
         4,
+        4,
         4
       ]
     },
@@ -337,6 +357,7 @@
       "prevRank": 21,
       "rarity": "onfire",
       "form": [
+        3,
         3,
         3
       ]
@@ -354,6 +375,7 @@
       "rarity": "hot",
       "form": [
         2,
+        2,
         2
       ]
     },
@@ -369,6 +391,7 @@
       "prevRank": 23,
       "rarity": "hot",
       "form": [
+        2,
         2,
         2
       ]
@@ -386,6 +409,7 @@
       "rarity": "normal",
       "form": [
         1,
+        1,
         1
       ]
     },
@@ -401,6 +425,7 @@
       "prevRank": 25,
       "rarity": "normal",
       "form": [
+        0,
         0,
         0
       ]
@@ -418,6 +443,7 @@
       "rarity": "normal",
       "form": [
         0,
+        0,
         0
       ]
     },
@@ -433,6 +459,7 @@
       "prevRank": 27,
       "rarity": "normal",
       "form": [
+        0,
         0,
         0
       ]
@@ -450,6 +477,7 @@
       "rarity": "normal",
       "form": [
         0,
+        0,
         0
       ]
     },
@@ -465,6 +493,7 @@
       "prevRank": 29,
       "rarity": "normal",
       "form": [
+        0,
         0,
         0
       ]
